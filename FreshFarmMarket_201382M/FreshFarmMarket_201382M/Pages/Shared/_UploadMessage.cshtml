@@ -1,0 +1,8 @@
+﻿@{
+    string? text = Convert.ToString(TempData["UploadMessage.Text"]);
+}
+
+@if (!string.IsNullOrWhiteSpace(text))
+{
+    <small class="text-danger">@text</small>
+}

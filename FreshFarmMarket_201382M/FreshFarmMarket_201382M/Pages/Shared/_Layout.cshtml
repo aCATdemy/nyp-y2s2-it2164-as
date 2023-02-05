@@ -1,0 +1,114 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using FreshFarmMarket_201382M.Model
+@inject SignInManager<ApplicationUser> SignInManager
+
+<!DOCTYPE html>
+<html lang="en-SG">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] | FreshFarmMarket</title>
+
+    @*Bootstrap CSS (v5.3.0-alpha1)*@
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    @*Font Awesome 6 (v6.2.1)*@
+    <link href="~/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/fontawesome/css/brands.min.css" rel="stylesheet" />
+    <link href="~/fontawesome/css/solid.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="min-vh-100">
+        <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+            <div class="container d-flex">
+                <a asp-page="/Index" class="navbar-brand">
+                    <img src="~/assets/freshfarmmarket-logo.png" alt="FreshFarmMarket-logo.png" width="140" height="65" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse navbar-nav-scroll d-lg-inline-flex justify-content-between" id="navbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a asp-page="/Index" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-page="/Lounge" class="nav-link">Members' Lounge</a>
+                        </li>
+                    </ul>
+                    <hr class="d-block d-lg-none" />
+                    <div class="account-options">
+                        <ul class="navbar-nav d-lg-flex justify-content-end">
+                            @{
+                                if (SignInManager.IsSignedIn(User))
+                                {
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa-solid fa-user me-1"></i>My Account
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                                            <li>
+                                                <a asp-page="/Membership/Logout" class="dropdown-item text-danger">
+                                                    <i class="fa-solid fa-arrow-right-from-bracket me-1"></i>Logout
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+                                        <a asp-page="/Membership/Login" class="nav-link login-btn">
+                                            <i class="fa-solid fa-lock me-1"></i>Login
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-page="/Membership/Registration" class="nav-link">
+                                            <i class="fa-solid fa-user-plus me-1"></i>Register
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        @RenderBody()
+    </div>
+
+    <footer class="py-3">
+        <div class="container">
+            <div class="row text-white-50">
+                <div class="col-lg-7 col-xl-8">
+                    <div class="text-lg-start mb-3 mb-lg-0">
+                        <h2 class="d-inline align-middle">
+                            <i class="fa-solid fa-hammer"></i>
+                        </h2>
+                        <small>Built by <a href="https://www.linkedin.com/in/kuah-yu-leong/" target="_blank">Kuah Yu Leong</a></small>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-xl-4">
+                    <div class="text-lg-end">
+                        <small>&copy; 2023 Fresh Farm Market</small>
+                        <br>
+                        <small>Last updated on 05 February 2023</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    @*Bootstrap JavaScript (v5.3.0-alpha1)*@
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

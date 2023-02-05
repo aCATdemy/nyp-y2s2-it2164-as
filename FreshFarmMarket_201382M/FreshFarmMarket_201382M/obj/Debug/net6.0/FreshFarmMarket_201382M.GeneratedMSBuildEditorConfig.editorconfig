@@ -1,0 +1,97 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = FreshFarmMarket_201382M
+build_property.RootNamespace = FreshFarmMarket_201382M
+build_property.ProjectDir = C:\Users\kuah_\Desktop\FreshFarmMarket_201382M\FreshFarmMarket_201382M\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\kuah_\Desktop\FreshFarmMarket_201382M\FreshFarmMarket_201382M
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Error/400.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3JcNDAwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Error/401.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3JcNDAxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Error/403.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3JcNDAzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Error/404.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3JcNDA0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Error/412.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3JcNDEyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Error/500.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3JcNTAwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Error/503.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3JcNTAzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Lounge.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG91bmdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Membership/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVtYmVyc2hpcFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Membership/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVtYmVyc2hpcFxMb2dvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Membership/Registration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVtYmVyc2hpcFxSZWdpc3RyYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Shared/_CaptchaMessage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9DYXB0Y2hhTWVzc2FnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Shared/_FlashMessage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9GbGFzaE1lc3NhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Shared/_UploadMessage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9VcGxvYWRNZXNzYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kuah_/Desktop/FreshFarmMarket_201382M/FreshFarmMarket_201382M/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

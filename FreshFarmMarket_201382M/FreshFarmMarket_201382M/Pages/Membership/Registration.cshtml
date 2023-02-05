@@ -1,0 +1,252 @@
+﻿@page
+@model FreshFarmMarket_201382M.Pages.Membership.RegistrationModel
+@{
+    ViewData["Title"] = "Membership Registration";
+}
+
+@using Microsoft.Extensions.Options
+@using FreshFarmMarket_201382M.Services
+@inject IOptions<CaptchaConfig> CaptchaConfig
+
+<div class="container my-4">
+    <div class="card mx-auto" style="max-width: 450px;">
+        <div class="card-body my-3">
+            <div class="text-center">
+                <h1>
+                    <i class="fa-solid fa-tractor mb-1"></i>
+                </h1>
+                <h3 class="fw-bold mb-4">Membership Registration</h3>
+            </div>
+
+            @await Html.PartialAsync("_CaptchaMessage")
+            @await Html.PartialAsync("_FlashMessage")
+
+            <form method="post" enctype="multipart/form-data" asp-antiforgery="true">
+                <input type="hidden" id="RModelToken" asp-for="RModel.Token" />
+
+                <hr class="mb-1" />
+                <div class="mb-1">
+                    <small class="fw-bold">
+                        <i class="fa-solid fa-id-card me-1"></i>Personal Particulars
+                    </small>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" asp-for="RModel.FullName" class="form-control" id="FullName" placeholder="Full Name" />
+                    <label for="FullName" asp-for="RModel.FullName">Full Name</label>
+                    <small>
+                        <span asp-validation-for="RModel.FullName" class="text-danger"></span>
+                    </small>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" asp-for="RModel.CreditCardNo" class="form-control" id="CreditCardNo" placeholder="Credit Card Number" />
+                    <label for="CreditCardNo" asp-for="RModel.CreditCardNo">Credit Card Number</label>
+                    <small>
+                        <span asp-validation-for="RModel.CreditCardNo" class="text-danger"></span>
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="RModel.Gender">Gender:</label>
+                    <br />
+                    <div class="form-check form-check-inline">
+                        @Html.RadioButtonFor(m => m.RModel.Gender, "Male", new {@class = "form-check-input"})
+                        <label class="form-check-label">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        @Html.RadioButtonFor(m => m.RModel.Gender, "Female", new {@class = "form-check-input"})
+                        <label class="form-check-label">Female</label>
+                    </div>
+                    <br />
+                    <small>
+                        <span asp-validation-for="RModel.Gender" class="text-danger"></span>
+                    </small>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" asp-for="RModel.MobileNo" class="form-control" id="MobileNo" placeholder="Mobile Number" onkeyup="phoneValidity()" />
+                    <label for="MobileNo" asp-for="RModel.MobileNo">Mobile Number &lpar;+65&rpar;</label>
+                    <div>
+                        <small id="phoneFeedback"></small>
+                    </div>
+                    <small>
+                        <span asp-validation-for="RModel.MobileNo" class="text-danger"></span>
+                    </small>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" asp-for="RModel.DeliveryAddress" class="form-control" id="DeliveryAddress" placeholder="Delivery Address" />
+                    <label for="DeliveryAddress" asp-for="RModel.DeliveryAddress">Delivery Address</label>
+                    <small>
+                        <span asp-validation-for="RModel.DeliveryAddress" class="text-danger"></span>
+                    </small>
+                </div>
+
+                <hr class="mb-1" />
+                <div class="mb-1">
+                    <small class="fw-bold">
+                        <i class="fa-solid fa-key me-1"></i>Account Credentials
+                    </small>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="email" asp-for="RModel.EmailAddress" class="form-control" id="EmailAddress" placeholder="name@example.com" onkeyup="emailValidity()" />
+                    <label for="EmailAddress" asp-for="RModel.EmailAddress">Email Address &lpar;this will be your username&rpar;</label>
+                    <div>
+                        <small id="emailFeedback"></small>
+                    </div>
+                    <small>
+                        <span asp-validation-for="RModel.EmailAddress" class="text-danger"></span>
+                    </small>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="password" asp-for="RModel.Password" class="form-control" id="Password" placeholder="Password" onkeyup="pwComplexity()" />
+                    <label for="Password" asp-for="RModel.Password">Password</label>
+                    <div>
+                        <small id="pwFeedback"></small>
+                    </div>
+                    <small>
+                        <span asp-validation-for="RModel.Password" class="text-danger"></span>
+                    </small>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="password" asp-for="RModel.ConfirmPassword" class="form-control" id="ConfirmPassword" placeholder="Confirm Password" onkeyup="pwMatch()" />
+                    <label for="ConfirmPassword" asp-for="RModel.ConfirmPassword">Confirm Password</label>
+                    <div>
+                        <small id="pwMatchFeedback"></small>
+                    </div>
+                    <small>
+                        <span asp-validation-for="RModel.ConfirmPassword" class="text-danger"></span>
+                    </small>
+                </div>
+
+                <hr class="mb-1" />
+                <div class="mb-1">
+                    <small class="fw-bold">
+                        <i class="fa-solid fa-person me-1"></i>Profile Bio
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="PhotoUpload" class="mb-1">Upload Photo &lpar;.jpg format only&rpar;:</label>
+                    <input type="file" accept="image/jpg" asp-for="PhotoUpload" class="form-control" onchange="showImgPreview(this)" />
+                    @await Html.PartialAsync("_UploadMessage")
+                    <br />
+                    <img id="imgPreview" class="rounded-circle mx-auto text-center" style="height: 150px; width: 150px; object-fit: cover;" src="~/uploads/default.png" />
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea asp-for="RModel.AboutMe" class="form-control" id="AboutMe" placeholder="About Me" style="height: 128px;"></textarea>
+                    <label for="AboutMe" asp-for="RModel.AboutMe">About Me</label>
+                    <small>
+                        <span asp-validation-for="RModel.AboutMe" class="text-danger"></span>
+                    </small>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://www.google.com/recaptcha/api.js?render=@CaptchaConfig.Value.SiteKey"></script>
+<script>
+    function getToken() {
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@CaptchaConfig.Value.SiteKey', { action: 'submit' }).then(function (token) {
+                console.log(token);
+                document.getElementById("RModelToken").value = token;
+            });
+        });
+    };
+
+    getToken()
+    setInterval(getToken, 115000)
+</script>
+<script>
+    function phoneValidity() {
+        var em = document.getElementById("MobileNo").value;
+
+        if (em.length != 8) {
+            document.getElementById("phoneFeedback").innerHTML = "Helper: Invalid mobile number"
+            document.getElementById("phoneFeedback").style.color = "#0a58ca"
+        } else if (em.search(/^[0-9]+$/) == -1) {
+            document.getElementById("phoneFeedback").innerHTML = "Helper: Invalid mobile number."
+            document.getElementById("phoneFeedback").style.color = "#0a58ca"
+        } else {
+            document.getElementById("phoneFeedback").innerHTML = "Helper: Valid mobile number!"
+            document.getElementById("phoneFeedback").style.color = "#198754"
+        }
+    }
+</script>
+<script>
+    function emailValidity() {
+        var em = document.getElementById("EmailAddress").value;
+
+        if (em.search(/^[^@@\s]+@@[^@@\.\s]+(\.[^@@\.\s]+)+$/) == -1) {
+            document.getElementById("emailFeedback").innerHTML = "Helper: Invalid email address."
+            document.getElementById("emailFeedback").style.color = "#0a58ca"
+        } else {
+            document.getElementById("emailFeedback").innerHTML = "Helper: Valid email address!"
+            document.getElementById("emailFeedback").style.color = "#198754"
+        }
+    }
+</script>
+<script>
+    function pwComplexity() {
+        var pw = document.getElementById("Password").value;
+
+        if (pw.length < 12) {
+            document.getElementById("pwFeedback").innerHTML = "Helper: Password must be at least 12 characters long."
+            document.getElementById("pwFeedback").style.color = "#0a58ca"
+        } else if (pw.search(/[A-Z]/) == -1) {
+            document.getElementById("pwFeedback").innerHTML = "Helper: Password must contain at least one upper-case letter."
+            document.getElementById("pwFeedback").style.color = "#0a58ca"
+        } else if (pw.search(/[a-z]/) == -1) {
+            document.getElementById("pwFeedback").innerHTML = "Helper: Password must contain at least one lower-case letter."
+            document.getElementById("pwFeedback").style.color = "#0a58ca"
+        } else if (pw.search(/[0-9]/) == -1) {
+            document.getElementById("pwFeedback").innerHTML = "Helper: Password must contain at least one number."
+            document.getElementById("pwFeedback").style.color = "#0a58ca"
+        } else if (pw.search(/[`!@@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/) == -1) {
+            document.getElementById("pwFeedback").innerHTML = "Helper: Password must contain at least one special character."
+            document.getElementById("pwFeedback").style.color = "#0a58ca"
+        } else {
+            document.getElementById("pwFeedback").innerHTML = "Helper: You got a strong password!"
+            document.getElementById("pwFeedback").style.color = "#198754"
+        }
+    }
+</script>
+
+<script>
+    function pwMatch() {
+        var pw = document.getElementById("Password").value;
+        var cpw = document.getElementById("ConfirmPassword").value;
+
+        if (pw != cpw) {
+            document.getElementById("pwMatchFeedback").innerHTML = "Helper: Password and confirm password does not match."
+            document.getElementById("pwMatchFeedback").style.color = "#0a58ca"
+        } else {
+            document.getElementById("pwMatchFeedback").innerHTML = "Helper: Passwords matched!"
+            document.getElementById("pwMatchFeedback").style.color = "#198754"
+        }
+    }
+</script>
+
+<script>
+    function showImgPreview(input) {
+        if (input.files[0]) {
+            var uploadImg = new FileReader();
+            uploadImg.onload = function (displayImg) {
+                $("#imgPreview").attr('src', displayImg.target.result);
+            }
+            uploadImg.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

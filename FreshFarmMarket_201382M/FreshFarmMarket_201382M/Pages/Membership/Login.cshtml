@@ -1,0 +1,74 @@
+﻿@page
+@model FreshFarmMarket_201382M.Pages.Membership.LoginModel
+@{
+    ViewData["Title"] = "Membership Login";
+}
+
+@using Microsoft.Extensions.Options
+@using FreshFarmMarket_201382M.Services
+@inject IOptions<CaptchaConfig> CaptchaConfig
+
+<div class="container my-4">
+    <div class="card mx-auto" style="max-width: 450px;">
+        <div class="card-body my-3">
+            <div class="text-center">
+                <h1>
+                    <i class="fa-solid fa-tractor mb-1"></i>
+                </h1>
+                <h3 class="fw-bold mb-4">Membership Login</h3>
+            </div>
+
+            @await Html.PartialAsync("_CaptchaMessage")
+            @await Html.PartialAsync("_FlashMessage")
+
+            <form method="post" id="login-form" asp-antiforgery="true">
+                <input type="hidden" id="LModelToken" asp-for="LModel.Token" />
+                <div class="form-floating mb-3">
+                    <input type="text" asp-for="LModel.EmailAddress" class="form-control" id="EmailAddress" placeholder="name@example.com" />
+                    <label for="EmailAddress" asp-for="LModel.EmailAddress">Username &lpar;email address&rpar;</label>
+                    <small>
+                        <span asp-validation-for="LModel.EmailAddress" class="text-danger"></span>
+                    </small>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="password" asp-for="LModel.Password" class="form-control" id="Password" placeholder="Password" />
+                    <label for="Password" asp-for="LModel.Password">Password</label>
+                    <small>
+                        <span asp-validation-for="LModel.Password" class="text-danger"></span>
+                    </small>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input type="checkbox" asp-for="LModel.RememberMe" class="form-check-input" />
+                    <label class="form-check-label" asp-for="LModel.RememberMe">Remember me</label>
+                </div>
+
+                <div class="row">
+                    <div class="col-auto me-auto">
+                        <a asp-page="/Membership/Registration" class="btn btn-link">Register</a>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://www.google.com/recaptcha/api.js?render=@CaptchaConfig.Value.SiteKey"></script>
+<script>
+    function getToken() {
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@CaptchaConfig.Value.SiteKey', { action: 'submit' }).then(function (token) {
+                console.log(token);
+                document.getElementById("LModelToken").value = token;
+            });
+        });
+    };
+
+    getToken()
+    setInterval(getToken, 115000)
+</script>

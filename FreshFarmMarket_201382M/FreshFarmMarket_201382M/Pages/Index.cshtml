@@ -1,0 +1,78 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home of the Freshest Produce";
+}
+
+@using Microsoft.AspNetCore.Identity
+@using FreshFarmMarket_201382M.Model
+@inject SignInManager<ApplicationUser> SignInManager
+
+<div class="container my-4">
+    <div class="text-center">
+        <h1 class="fw-bold mb-3">Welcome to Fresh Farm Market</h1>
+    </div>
+    @{
+        if (SignInManager.IsSignedIn(User))
+        {
+            <div class="row">
+                <div class="col-12 col-lg-4 mb-3 mb-lg-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="fw-bold mb-4">Membership Profile</h4>
+                            <div class="mb-3">
+                                <p class="fw-bold mb-1">Profile Picture:</p>
+                                <img id="imgPreview" class="rounded-circle mx-auto text-center" style="height: 150px; width: 150px; object-fit: cover;" src="@Html.DisplayFor(model => model.ProfileInfo[6])" onerror="this.src='/uploads/default.png'" />
+                            </div>
+                            <div>
+                                <p class="fw-bold mb-1">About Me:</p>
+                                <p class="mb-0">@Html.DisplayFor(model => model.ProfileInfo[7])</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="fw-bold mb-4">Account Information</h4>
+                            <div class="mb-3">
+                                <p class="fw-bold mb-1">Full Name:</p>
+                                <p class="mb-0">@Html.DisplayFor(model => model.ProfileInfo[0])</p>
+                            </div>
+                            <div class="mb-3">
+                                <p class="fw-bold mb-1">Credit Card Number:</p>
+                                <p class="mb-0">@Html.DisplayFor(model => model.ProfileInfo[1])</p>
+                            </div>
+                            <div class="mb-3">
+                                <p class="fw-bold mb-1">Gender:</p>
+                                <p class="mb-0">@Html.DisplayFor(model => model.ProfileInfo[2])</p>
+                            </div>
+                            <div class="mb-3">
+                                <p class="fw-bold mb-1">Mobile Number:</p>
+                                <p class="mb-0">@Html.DisplayFor(model => model.ProfileInfo[3])</p>
+                            </div>
+                            <div class="mb-3">
+                                <p class="fw-bold mb-1">Delivery Address:</p>
+                                <p class="mb-0">@Html.DisplayFor(model => model.ProfileInfo[4])</p>
+                            </div>
+                            <div class="mb-3">
+                                <p class="fw-bold mb-1">Email Address &lpar;username&rpar;:</p>
+                                <p class="mb-0">@Html.DisplayFor(model => model.ProfileInfo[5])</p>
+                            </div>
+                            <div>
+                                <p class="fw-bold mb-1">Password:</p>
+                                <p class="mb-0">To update your password, click here.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="text-center">
+                <p>Please <a asp-page="/Membership/Login">login</a> to view your account details on this page.</p>
+            </div>
+        }
+    }
+</div>
